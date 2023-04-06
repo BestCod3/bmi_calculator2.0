@@ -14,7 +14,7 @@ class _WidgetSliderState extends State<WidgetSlider> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.74,
+      width: MediaQuery.of(context).size.width * 0.84,
       height: MediaQuery.of(context).size.height * 0.20,
       decoration: BoxDecoration(
           color: Color.fromRGBO(10, 4, 22, 0.941),

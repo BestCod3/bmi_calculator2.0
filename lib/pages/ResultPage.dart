@@ -1,17 +1,23 @@
 import 'package:bmi_calculator/bottomBar/bottomBar.dart';
+import 'package:bmi_calculator/data/bmiData.dart';
+
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage();
+  const ResultPage({super.key, required this.height, required this.kg});
+  final double height;
+  final int kg;
 
   @override
   Widget build(BuildContext context) {
+    final bmi = BmiData.BmiCalculate(height, kg);
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 17, 5, 42),
       appBar: AppBar(
         backgroundColor: Color(0xff848386),
         title: Text(
-          'Ден соолук индекси (BMI)',
+          'Индекс здоровья (BMI)',
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
         ),
@@ -20,7 +26,7 @@ class ResultPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            'Жыйынтык',
+            'Результат',
             style: TextStyle(
                 fontSize: 28, fontWeight: FontWeight.w500, color: Colors.white),
           ),
@@ -32,11 +38,39 @@ class ResultPage extends StatelessWidget {
               ),
               height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width * 0.95,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    BmiData.bmiRESULT(bmi).toString(),
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 34,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    BmiData.BmiCalculate(height, kg).toStringAsFixed(1),
+                    style: TextStyle(fontSize: 84, color: Colors.white),
+                  ),
+                  Text(
+                    BmiData.giveDescription(bmi).toString(),
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  )
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
-      bottomNavigationBar: BottomBar(text: 'RECALCULATE'),
+      bottomNavigationBar: BottomBar(
+        text: 'RECALCULATE',
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 }

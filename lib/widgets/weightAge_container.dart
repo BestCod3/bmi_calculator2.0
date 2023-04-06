@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 class WeightAgeContainer extends StatelessWidget {
-  WeightAgeContainer({
-    super.key,
-    required this.text,
-    required this.number,
-    required this.PressedMinus,
-    required this.PressedPlus,
-  });
+  WeightAgeContainer(
+      {super.key,
+      required this.text,
+      required this.number,
+      required this.PressedMinus,
+      required this.PressedPlus,
+      required this.tag1,
+      required this.tag2});
   final Function()? PressedMinus;
   final Function()? PressedPlus;
   final String text;
   final int number;
+  final Object? tag1;
+  final Object? tag2;
 
   @override
   @override
@@ -43,6 +46,7 @@ class WeightAgeContainer extends StatelessWidget {
             children: [
               FloatingActionButton(
                 backgroundColor: Color(0xff5C5B5B),
+                heroTag: tag1,
                 onPressed: PressedMinus,
                 child: Icon(
                   Icons.remove,
@@ -52,6 +56,7 @@ class WeightAgeContainer extends StatelessWidget {
               ),
               FloatingActionButton(
                 backgroundColor: Color(0xff5C5B5B),
+                heroTag: tag2,
                 onPressed: PressedPlus,
                 child: Icon(
                   Icons.add,

@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/bottomBar/bottomBar.dart';
+import 'package:bmi_calculator/pages/ResultPage.dart';
 import 'package:bmi_calculator/widgets/customContainer.dart';
 import 'package:bmi_calculator/widgets/weightAge_container.dart';
 import 'package:bmi_calculator/widgets/widgetSlider.dart';
@@ -71,6 +72,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   WeightAgeContainer(
+                    tag1: '4',
+                    tag2: '3',
                     text: 'WEIGHT',
                     number: weight,
                     PressedMinus: () {
@@ -85,6 +88,8 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   WeightAgeContainer(
+                    tag2: '2',
+                    tag1: '1',
                     text: 'Age',
                     number: age,
                     PressedMinus: () {
@@ -102,7 +107,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          bottomNavigationBar: BottomBar(text: "CALCULATE"),
+          bottomNavigationBar: BottomBar(
+            text: "CALCULATE",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(height: num, kg: weight),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
